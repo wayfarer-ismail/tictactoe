@@ -15,13 +15,14 @@ public class body {
 
         while(!valid) {
             System.out.print("Input command: ");
-            String mode = scanner.next();
-            users = Arrays.copyOf(scanner.nextLine().trim().split(" "), 2);
-
+            String mode = scanner.next(); //read start or exit
+            
             if(Objects.equals(mode, "exit")) {
                 System.exit(0);
             }
-
+            
+            users = Arrays.copyOf(scanner.nextLine().trim().split(" "), 2); //read the two users
+            
             try {//check the inputs are all valid
                 valid = Arrays.binarySearch(userOptions, users[0]) >= 0 &&
                         Arrays.binarySearch(userOptions, users[1]) >= 0 &&
