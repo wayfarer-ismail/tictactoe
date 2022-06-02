@@ -32,10 +32,9 @@ public class winLogic {
 
         for (int i = 0; i < table.length; i++) { // check all row and column combinations
             for (int j = 0; j < table.length; j++) {
-                if(table[i][j] == item && table[i][(1 + j) % 3] == item && table[i][(2 + j) % 3] == ' '){
-                //if(Arrays.equals(new char[]{table[i][j], table[i][(1 + j) % 3],  table[i][(2 + j) % 3]}, items)) {
+                if (table[i][j] == item && table[i][(1 + j) % 3] == item && table[i][(2 + j) % 3] == ' ') {
                     return new int[]{i, (2 + j) % 3}; // check the rows
-                } else if (table[j][i] == item && table[(1 + j) % 3][i] == item && table[(2 + j) % 3][i] == ' '){
+                } else if (table[j][i] == item && table[(1 + j) % 3][i] == item && table[(2 + j) % 3][i] == ' ') {
                     return new int[]{(2 + j) % 3, i}; // check the columns
                 }
             }
