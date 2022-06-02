@@ -1,6 +1,6 @@
 package tictactoe;
 
-import java.util.Arrays;
+import java.util.*;
 
 public class winLogic {
     /**
@@ -28,12 +28,12 @@ public class winLogic {
      * @return the coordinates of a winning location
      */
     static int[] getWin(char[][] table, char item) {
-        char[] items = new char[]{item, item, ' '};
+        //char[] items = new char[]{item, item, ' '};
 
         for (int i = 0; i < table.length; i++) { // check all row and column combinations
             for (int j = 0; j < table.length; j++) {
-                //if(table[i][j] == item && table[i][(1 + j) % 3] == item && table[i][(2 + j) % 3] == ' '){
-                if(Arrays.equals(new char[]{table[i][j], table[i][(1 + j) % 3],  table[i][(2 + j) % 3]}, items)) {
+                if(table[i][j] == item && table[i][(1 + j) % 3] == item && table[i][(2 + j) % 3] == ' '){
+                //if(Arrays.equals(new char[]{table[i][j], table[i][(1 + j) % 3],  table[i][(2 + j) % 3]}, items)) {
                     return new int[]{i, (2 + j) % 3}; // check the rows
                 } else if (table[j][i] == item && table[(1 + j) % 3][i] == item && table[(2 + j) % 3][i] == ' '){
                     return new int[]{(2 + j) % 3, i}; // check the columns
@@ -55,11 +55,11 @@ public class winLogic {
      * prints the correct winning state at the end of the game
      * @param table the board used in the game
      */
-    static void announceWinner(char[][] table){
+    static void announceWinner(char[][] table, String[] users){
         if (isWinner(table, 'X')) {
-            System.out.println("X wins");
+            System.out.printf("%s as X wins \n\n", Objects.equals(users[0], "user") ? users[0] : "ai - " + users[0]);
         } else if (isWinner(table, 'O')) {
-            System.out.println("O wins");
+            System.out.printf("%s as O wins\n\n", Objects.equals(users[1], "user") ? users[1] : "ai - " + users[1]);
         } else {
             System.out.println("Draw");
         }

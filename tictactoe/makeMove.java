@@ -1,7 +1,6 @@
 package tictactoe;
 
 import java.util.*;
-
 import static tictactoe.Main.*;
 
 public class makeMove {
@@ -45,8 +44,9 @@ public class makeMove {
      */
     static void aiPlay(char[][] table, String mode) {
         boolean valid = true;
-        int row = 0;
-        int col = 0;
+        int[] coordinates = {-1, -1};
+        int row = 0, col = 0;
+
         char playerCode = housekeeping.occurrences(table, 'X') > housekeeping.occurrences(table, 'O') ? 'O' :  'X';
         char opponentCode = playerCode == 'X' ? 'O' : 'X';
 
@@ -54,14 +54,22 @@ public class makeMove {
             valid = false; //trigger the while loop below for random move
         }
         else if (Objects.equals(mode, "medium")) {
-            int[] coordinates = winLogic.getWin(table, playerCode);
+            coordinates = winLogic.getWin(table, playerCode); //check for a winning move
 
             if (coordinates[0] == -1) { //if its invalid check opponent
+
+                //check for opponents winning move to block it
                 coordinates = winLogic.getWin(table, opponentCode);
-                if (coordinates[0] == -1) { //if its invalid trigger the while loop for a random move
+                if (coordinates[0] == -1) { //if its not found trigger the while loop below for a random move
                     valid = false;
                 }
             }
+        } else { //hard mode
+            //int[] virtualBoard;
+            coordinates = MinMax.findBestMove(table.clone());   
+        }
+
+        if (valid) {//if medium doesn't find a winning play or hard is chosen
             row = coordinates[0];
             col = coordinates[1];
         }
@@ -76,7 +84,7 @@ public class makeMove {
             }
         }
 
-        System.out.printf("Making move level \"%s\"\n", mode);
+        System.out.printf("ai difficulty level : %s \n", mode);
         table[row][col] = playerCode;
     }
 }
