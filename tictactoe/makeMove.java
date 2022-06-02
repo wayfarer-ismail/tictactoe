@@ -5,8 +5,7 @@ import static tictactoe.Main.*;
 
 public class makeMove {
 
-    /**
-     * user inputs valid coordinates and makes a play
+    /** user inputs valid coordinates and makes a play
      * @param table the play will be made on this board
      */
     static void userPlay(char[][] table) {
@@ -23,14 +22,14 @@ public class makeMove {
                 col = Integer.parseInt(input[1]) - 1;
 
                 if (table[row][col] != ' ') { //if not empty
-                    System.out.println("This cell is occupied! Choose another one!");
+                    System.out.println("This cell is occupied, Choose another one.");
                 } else {
                     valid = true; //continue with the programme, input is valid
                 }
             } catch (NumberFormatException e) {
-                System.out.println("You should enter numbers!");
+                System.out.println("You should enter numbers.");
             } catch (ArrayIndexOutOfBoundsException e) {
-                System.out.println("Coordinates should be from 1 to 3!");
+                System.out.println("Coordinates should be from 1 to 3.");
             }
         }
 
@@ -74,7 +73,7 @@ public class makeMove {
             col = coordinates[1];
         }
 
-        while (!valid) {
+        while (!valid) { //keep choosing random positions
             Random random = new Random();
             row = random.nextInt(3);
             col = random.nextInt(3);
