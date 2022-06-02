@@ -9,10 +9,11 @@ public class Main {
         char[][] table = new char[3][3]; //the board to be used
 
         while(true) {
+            for (char[] chars : table) { Arrays.fill(chars, ' '); } //fill array with blank spaces
 
             String[] users = body.setUsers();
 
-            housekeeping.initialiseBoard(table);
+            //housekeeping.initialiseBoard(table);
 
             body.playGame(table, users);
 

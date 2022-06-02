@@ -1,6 +1,7 @@
 package tictactoe;
 
 public class housekeeping {
+    @Deprecated
     /**
      * takes in the cells inputted by user and places them in their respective position in the board
      * @param table the board that will be initialised
