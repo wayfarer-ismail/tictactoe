@@ -1,4 +1,6 @@
+package tictactoe;
 import java.util.*;
+
 import static tictactoe.Main.*;
 
 public class body {
