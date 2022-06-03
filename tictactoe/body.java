@@ -27,8 +27,8 @@ public class body {
                 valid = Arrays.binarySearch(userOptions, users[0]) >= 0 &&
                         Arrays.binarySearch(userOptions, users[1]) >= 0 &&
                         Objects.equals(mode, "start");
-            } catch (NullPointerException e) {//triggered when less than three words are scanned
-                System.out.println("Bad parameters!");
+            } catch (NullPointerException e) {//triggered when more or less than three words are scanned
+                System.out.println("");
             }
 
             if (!valid) {
