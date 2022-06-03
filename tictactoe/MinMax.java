@@ -1,14 +1,10 @@
 package tictactoe;
 
+// Java program to find the next optimal move for a player, This code is inspired by PrinciRaj1992 :
+// https://www.geeksforgeeks.org/minimax-algorithm-in-game-theory-set-3-tic-tac-toe-ai-finding-optimal-move/
 public class MinMax extends makeMove{
-    // Java program to find the next optimal move for a player
-    // This code is inspired by PrinciRaj1992 :
-    // https://www.geeksforgeeks.org/minimax-algorithm-in-game-theory-set-3-tic-tac-toe-ai-finding-optimal-move/
 
-    // This is the minimax function. It considers all
-    // the possible ways the game can go and returns
-    // the value of the board
-    /**
+    /**considers all the possible ways the game can go and returns the value of the sequence
      * @param board the playing board
      * @param depth how many virtual moves have been made so far
      * @param isMax used to alternate between simulated ai and user turns
