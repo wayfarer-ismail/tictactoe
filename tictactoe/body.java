@@ -43,20 +43,20 @@ public class body {
      * @param table the playing field
      * @param users the two users playing the game
      */
-    static void playGame(char[][] table, String[] users) {
+    static void playGame(String[] users) {
         int i = 0;
 
-        while (housekeeping.occurrences(table,' ') != 0) {
+        while (housekeeping.occurrences(Main.board,' ') != 0) {
 
             if (Objects.equals(users[i], "user")) {
-                makeMove.userPlay(table);
+                makeMove.userPlay();
             } else {
-                makeMove.aiPlay(table, users[i]);
+                makeMove.aiPlay(users[i]);
             }
 
-            housekeeping.printArray(table);
+            housekeeping.printArray();
 
-            if (winLogic.isWinner(table, 'O') || winLogic.isWinner(table, 'X')) { break; }
+            if (winLogic.isWinner(Main.board, 'O') || winLogic.isWinner(Main.board, 'X')) { break; }
 
             i = i == 0? 1 : 0; //alternate between user 1 and 2
         }
