@@ -1,6 +1,6 @@
 package tictactoe;
-import java.util.*;
 
+import java.util.*;
 import static tictactoe.Main.*;
 
 public class body {
@@ -10,7 +10,7 @@ public class body {
      */
     static String[] setUsers() {
         boolean valid = false;
-        String[] userOptions = new String[]{ "easy", "hard", "medium", "user"};
+        String[] userOptions = { "easy", "hard", "medium", "user"};
         String[] users = new String[2];
 
         while(!valid) {
@@ -18,16 +18,17 @@ public class body {
             String mode = scanner.next(); //read start or exit
             
             if(Objects.equals(mode, "exit")) {
+                System.out.print("\nGoodbye.");
                 System.exit(0);
             }
             
-            users = Arrays.copyOf(scanner.nextLine().trim().split(" "), 2); //read the two users
-            
             try {//check the inputs are all valid
+                users = scanner.nextLine().trim().split(" "); //read the two users
+
                 valid = Arrays.binarySearch(userOptions, users[0]) >= 0 &&
                         Arrays.binarySearch(userOptions, users[1]) >= 0 &&
                         Objects.equals(mode, "start");
-            } catch (NullPointerException e) {//triggered when more or less than three words are scanned
+            } catch (NullPointerException e) {//triggered when less than three words are scanned
                 System.out.println("");
             }
 
@@ -40,13 +41,12 @@ public class body {
 
     /**
      * alternates between the two users letting them play a turn until a win or draw
-     * @param table the playing field
      * @param users the two users playing the game
      */
     static void playGame(String[] users) {
         int i = 0;
 
-        while (housekeeping.occurrences(Main.board,' ') != 0) {
+        while (housekeeping.occurrences(Main.board,' ') != 0) { //while there are empty places available
 
             if (Objects.equals(users[i], "user")) {
                 makeMove.userPlay();
@@ -54,7 +54,7 @@ public class body {
                 makeMove.aiPlay(users[i]);
             }
 
-            housekeeping.printArray();
+            housekeeping.printBoard();
 
             if (winLogic.isWinner(Main.board, 'O') || winLogic.isWinner(Main.board, 'X')) { break; }
 

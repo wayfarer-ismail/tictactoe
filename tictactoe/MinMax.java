@@ -8,6 +8,14 @@ public class MinMax extends makeMove{
     // This is the minimax function. It considers all
     // the possible ways the game can go and returns
     // the value of the board
+    /**
+     * @param board the playing board
+     * @param depth how many virtual moves have been made so far
+     * @param isMax used to alternate between simulated ai and user turns
+     * @param player the ai's symbol
+     * @param opponent the users symbol
+     * @return value of a position in the board from -10 - 10
+     */
     static int minimax(char[][] board, int depth, Boolean isMax, char player, char opponent)
     {
         // If Maximizer or minimiser has won the game return evaluated score
@@ -63,8 +71,10 @@ public class MinMax extends makeMove{
         return best;
     }
 
-    // This will return the best possible
-    // move for the player
+    /**
+     * @param board playing board
+     * @return coordinates of the optimum move based on minmax result
+     */
     static int[] findBestMove(char[][] board)
     {
         char playerCode = housekeeping.occurrences(board, 'X') > housekeeping.occurrences(board, 'O') ? 'O' :  'X';
@@ -73,37 +83,28 @@ public class MinMax extends makeMove{
         int bestVal = -1000;
         int[] bestMove = new int[2];
 
-        // Traverse all cells, evaluate minimax function for all
-        // empty cells. And return the cell with optimal value.
+        // evaluate minimax function for all empty cells
         for (int i = 0; i < 3; i++) {
-            System.out.printf("\n %d :", i);
             for (int j = 0; j < 3; j++) {
+
                 // Check if cell is empty
-                
                 if (board[i][j] == ' ') {
-                    // Make the move
-                    board[i][j] = playerCode;
+                    
+                    board[i][j] = playerCode; // Make the move
 
-                    // compute evaluation function for this move.
+                    // compute the value of this move.
                     int moveVal = minimax(board, 0, false, playerCode, opponentCode);
-                    System.out.printf(" %d ", moveVal);
 
-                    // Undo the move
-                    board[i][j] = ' ';
+                    board[i][j] = ' '; // Undo the move
 
-                    // If the value of the current move is more
-                    // than the best value, then update best
-                    if (moveVal > bestVal) {
+                    if (moveVal > bestVal) { //if the current move is better than the best move, update best
                         bestMove[0] = i;
                         bestMove[1] = j;
                         bestVal = moveVal;
                     }
-                } else {
-                    System.out.printf(" %c ", board[i][j]);
                 }
             }
         }
-        System.out.println();
 
         return bestMove;
     }

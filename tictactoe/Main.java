@@ -7,11 +7,13 @@ public class Main {
     protected static char[][] board = new char[3][3]; //the board to be used
 
     public static void main(String[] args) {
-
+        
+        housekeeping.welcomeMessage();
+        
         while(true) {
-
+            
             for (char[] chars : board) { Arrays.fill(chars, ' '); } //fill array with blank spaces
-
+            
             String[] users = body.setUsers();
 
             body.playGame(users);

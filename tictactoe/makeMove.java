@@ -5,9 +5,7 @@ import static tictactoe.Main.*;
 
 public class makeMove {
 
-    /** user inputs valid coordinates and makes a play
-     * @param table the play will be made on this board
-     */
+    /** loops until user inputs valid coordinates then makes a play */
     static void userPlay() {
         boolean valid = false;
         int row = 0;
@@ -38,7 +36,6 @@ public class makeMove {
     }
 
     /** chooses a move based on the difficulty passed as a parameter
-     * @param table the playing field
      * @param mode difficulty level of the ai
      */
     static void aiPlay(String mode) {
@@ -57,14 +54,13 @@ public class makeMove {
 
             if (coordinates[0] == -1) { //if its invalid check opponent
 
-                //check for opponents winning move to block it
-                coordinates = winLogic.getWin(opponentCode);
-                if (coordinates[0] == -1) { //if its not found trigger the while loop below for a random move
+                coordinates = winLogic.getWin(opponentCode); //check for opponents winning move to block it
+                //if its not found trigger the while loop below for a random move
+                if (coordinates[0] == -1) { 
                     valid = false;
                 }
             }
         } else { //hard mode
-            //int[] virtualBoard;
             coordinates = MinMax.findBestMove(Main.board.clone());   
         }
 

@@ -1,11 +1,10 @@
 package tictactoe;
 
 import java.util.*;
-//import static tictactoe.Main.*;
 
 public class winLogic {
     /**
-     * @param table array to be searched
+     * @param board playing board to be searched
      * @param item letter to be checked for winning formation
      * @return whether or not a winning formation was found
      */
@@ -24,12 +23,10 @@ public class winLogic {
     }
 
     /** checks all two in a row combinations for a win
-     * @param table the playing field
      * @param item the letter to be checked for winning
-     * @return the coordinates of a winning location
+     * @return the coordinates of a winning location, other wise {-1, -1}
      */
     static int[] getWin(char item) {
-        //char[] items = new char[]{item, item, ' '};
 
         for (int i = 0; i < Main.board.length; i++) { // check all row and column combinations
             for (int j = 0; j < Main.board.length; j++) {
@@ -53,7 +50,7 @@ public class winLogic {
 
     /**
      * prints the correct winning state at the end of the game
-     * @param table the board used in the game
+     * @param users a String array of the two players
      */
     static void announceWinner(String[] users){
         if (isWinner(Main.board, 'X')) {
